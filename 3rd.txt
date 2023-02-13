@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+string decrypt(string message) {
+    string decrypted = "";
+    int prevAscii = 0;
+    for (char c : message) {
+        int ascii = int(c);
+        ascii -= prevAscii;
+        while (ascii < int('a')) {
+            ascii += 26;
+        }
+        decrypted += char(ascii);
+        prevAscii = int(c) - 1;
+    }
+    return decrypted;
+}
+
+int main() {
+    string message;
+    cout << "Enter a message to decrypt: ";
+    getline(cin, message);
+
+    string decrypted = decrypt(message);
+    cout << "Decrypted message: " << decrypted << endl;
+
+    return 0;
+}
